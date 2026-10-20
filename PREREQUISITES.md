@@ -15,7 +15,9 @@
 
 ## Credentials (handed out by your instructor)
 
-Jenkins URL, Jenkins username + password, repo URL, GitHub PAT (if repo is private)
+Jenkins URL, Jenkins username + password, repo URL (public; you'll fork it)
+
+You'll create your own GitHub PAT during [Lab 0 setup](labs/00_SETUP.md) to push to your fork.
 
 ## Verify
 

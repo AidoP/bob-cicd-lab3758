@@ -40,8 +40,8 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 **What You'll Do:**
 
-- Create your GitHub PAT (if using private repo)
-- Fork the repository and create your working branch
+- Create a GitHub PAT (used to `git push` to your fork)
+- Fork the repository, cache your Git credentials, and create your working branch
 - Set up your Jenkins pipeline
 - Run initial verification build
 
