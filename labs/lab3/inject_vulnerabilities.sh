@@ -6,10 +6,10 @@
 # to demonstrate comprehensive security vulnerabilities for lab testing.
 #
 # Usage:
-#   ./labs/sre/lab3/enhanced_injection.sh
+#   ./labs/lab3/enhanced_injection.sh
 #
 # To restore:
-#   ./labs/sre/lab3/restore_vulnerabilities.sh
+#   ./labs/lab3/restore_vulnerabilities.sh
 # ═══════════════════════════════════════════════════════════════════
 
 set -e
@@ -218,7 +218,7 @@ echo "   PCI Checkstyle: cd order-service && mvn checkstyle:check"
 echo "   Run tests:      cd order-service && mvn test"
 echo "   OWASP Check:    cd order-service && mvn dependency-check:check"
 echo ""
-echo "🧹 To restore: ./labs/sre/lab3/restore_vulnerabilities.sh"
+echo "🧹 To restore: ./labs/lab3/restore_vulnerabilities.sh"
 echo ""
 
 # Made with Bob

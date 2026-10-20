@@ -162,22 +162,8 @@ git config --global user.email "your.email@example.com"
 
 ## Next Steps
 
-### For All Participants
-
-**Start with the Intro Labs** to learn Bob fundamentals:
-- [Lab 1: Bob Fundamentals](intro-labs/bob-lab-1-fundamentals.md)
-- [Lab 2: Bob Advanced Features](intro-labs/bob-lab-2-advanced-features.md)
-
-### After Intro Labs
-
-Choose your track:
-
-**SRE Track:**
-- Complete [SRE Setup](sre/00_SETUP.md) to configure Jenkins and create your working branch
-- Then proceed with [SRE Lab 1](sre/lab1/LAB1_PR_REVIEW.md)
-
-**App Track:**
-- Proceed directly to [App Lab 1](app/lab1/LAB1_CODE_REVIEW.md)
+- Complete [Setup](00_SETUP.md) to configure Jenkins and create your working branch
+- Then proceed with [Lab 1](lab1/LAB1_PR_REVIEW.md)
 
 ---
 
@@ -213,4 +199,4 @@ git config --global credential.helper 'cache --timeout=3600'
 
 ---
 
-**Ready to start?** Head to the [Intro Labs](intro-labs/bob-lab-1-fundamentals.md) to begin your Bob journey! 🚀
+**Ready to start?** Head to the [Setup](00_SETUP.md) to begin your Bob journey! 🚀

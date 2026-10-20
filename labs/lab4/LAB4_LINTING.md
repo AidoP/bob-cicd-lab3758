@@ -56,7 +56,7 @@ By the end of this lab, you will use Bob to not just interact with linters — b
 - [ ] You should have completed Lab 1 at a minimum (your Jenkinsfile already has the `askBob()` helper)
 - [ ] You're on your working branch (for example `user1-labs`)
 
-**Reset your Jenkinsfile first.** Remove any stages you added in previous labs, keeping only the `Checkout` stage and the `askBob` helper at the bottom. Stacking every lab's stages stretches a single build past 15 minutes — clearing them keeps iteration fast and the logs readable. Use [`solution/Jenkinsfile.start`](../../../solution/Jenkinsfile.start) as the reference shape.
+**Reset your Jenkinsfile first.** Remove any stages you added in previous labs, keeping only the `Checkout` stage and the `askBob` helper at the bottom. Stacking every lab's stages stretches a single build past 15 minutes — clearing them keeps iteration fast and the logs readable. Use [`solution/Jenkinsfile.start`](../../solution/Jenkinsfile.start) as the reference shape.
 
 ---
 
@@ -335,7 +335,7 @@ If you have completed the lab and want to explore different linting challenges, 
 - **Hadolint, Checkov, or KubeLinter fail with `command not found`.** The image was built incorrectly or the wrong image is referenced in the Jenkins pod YAML. Verify the image from [`setup/lint-tools/Dockerfile`](setup/lint-tools/Dockerfile) was pushed and is being used.
 - **Checkov output is huge and noisy.** Narrow the scan target to [`order-service/deploy-flawed/`](order-service/deploy-flawed) rather than the whole repo.
 - **KubeLinter reports nothing useful.** Make sure you are linting the deployment manifests, especially [`order-service/deploy-flawed/deployment.yaml`](order-service/deploy-flawed/deployment.yaml).
-- **`Jenkinsfile` not working?** Use the reference solution in [`labs/sre/lab4/Jenkinsfile.lab4solution`](labs/sre/lab4/Jenkinsfile.lab4solution) as your reset point once it is available in the repo.
+- **`Jenkinsfile` not working?** Use the reference solution in [`labs/lab4/Jenkinsfile.lab4solution`](labs/lab4/Jenkinsfile.lab4solution) as your reset point once it is available in the repo.
 - **Hadolint, Checkov, or KubeLinter fail with `command not found`**
   - Cause: The lint-tools image wasn't built correctly or isn't being used
   - Fix: Verify the image from `setup/lint-tools/Dockerfile` was pushed
@@ -349,4 +349,4 @@ If you have completed the lab and want to explore different linting challenges, 
 
 ---
 
-When you're ready, continue to [LAB5_DCR_JIRA.md](../lab5/LAB5_DCR_JIRA.md).
+When you're ready, continue to [LAB6_JENKINS_MCP.md](../lab6/LAB6_JENKINS_MCP.md).

@@ -35,7 +35,7 @@ In this lab, you'll configure the Jenkins MCP server to interact with your Jenki
 > [!NOTE]
 >
 > - It is assumed you have completed some or all of the previous labs so that there will be pipelines and pipeline runs in the instance.
-> - The Jenkins MCP server is configured using `mcp-jenkins` via `uvx`, following the same pattern you used for the Jira MCP server in the advanced features introduction lab.
+> - The Jenkins MCP server is configured using `mcp-jenkins` via `uvx`.
 
 ### What you'll build
 
@@ -54,7 +54,6 @@ By the end, you'll be able to monitor and analyze your Jenkins pipelines entirel
 ## Before you start
 
 - [ ] Lab 1 complete (you understand Jenkins pipeline structure and have a working pipeline)
-- [ ] Completed `labs/intro-labs/bob-lab-2-advanced-features.md` (you've set up an MCP server before with Jira)
 - [ ] `uv` installed on your system ([install instructions](https://docs.astral.sh/uv/getting-started/installation/))
 - [ ] Jenkins credentials provided by your instructor (URL, username, API token)
 
@@ -73,7 +72,7 @@ The `mcp-jenkins` server provides these following tools (just a subset of the av
 - **`get_build_log`** — Retrieve the console output for a build
 - **`get_build_test_results`** — Get test results from a build (passed, failed, skipped)
 
-To configure the server, we will use the exact same pattern you used for the Jira MCP server in the advanced features lab. First lets setup an API key for the Jenkins instannce.
+To configure the server, first lets setup an API key for the Jenkins instance.
 
 1. Open your Jenkins URL in a browser and log in.
 
@@ -87,7 +86,7 @@ To configure the server, we will use the exact same pattern you used for the Jir
 
 Next, lets setup the MCP server. The `.bob/mcp.json` file already exists at the repo root.
 
-1. Open the `.bob/mcp.json` file. If you completed the advanced features lab, it might already have the Jira/Atlassian server configured. That's fine — we'll add the Jenkins server alongside it.
+1. Open the `.bob/mcp.json` file. If it already has other MCP servers configured, that's fine — we'll add the Jenkins server alongside them.
 
 1. Add the Jenkins server block to the `mcpServers` object:
 
@@ -108,7 +107,7 @@ Next, lets setup the MCP server. The `.bob/mcp.json` file already exists at the 
     }
     ```
 
-    - If you already have the Atlassian server configured, your file should look like this:
+    - If you already have another MCP server configured (for example `atlassian`), your file should look like this:
 
         ```json
         {
@@ -131,9 +130,9 @@ Next, lets setup the MCP server. The `.bob/mcp.json` file already exists at the 
 
 1. Save the `mcp.json` file.
 
-Next, we have to add the credentials to our environment file. If you completed the advanced features lab, it already has your Jira credentials — that's fine, we'll add Jenkins credentials below them.
+Next, we have to add the credentials to our environment file.
 
-1. Open the `.env` file at the repo root and add these lines (update it with your username and the token you created in the previous steps):
+1. Open the `.env` file at the repo root (create it if it doesn't exist; if it already has other credentials, add the Jenkins ones below them) and add these lines (update it with your username and the token you created in the previous steps):
 
     ```bash
     JENKINS_URL=https://jenkins.example.com
@@ -399,13 +398,12 @@ Then provide:
 
 ---
 
-**You've completed the SRE lab series! You now have:**
+**You've completed the workshop labs! You now have:**
 
 - ✅ Automated PR reviews (Lab 1)
 - ✅ Intelligent test failure analysis (Lab 2)
 - ✅ Security scanning with Bob (Lab 3)
 - ✅ Multi-tool linting and compliance (Lab 4)
-- ✅ DCR and Jira integration (Lab 5)
 - ✅ Jenkins pipeline insights and automation (Lab 6)
 
 **Next steps:**
@@ -416,4 +414,4 @@ Then provide:
 - Share your Bob configurations with your team
 - Build automation that combines multiple MCP servers
 
-Congratulations on completing the SRE portion of this workshop! 🎉
+Congratulations on completing this workshop! 🎉

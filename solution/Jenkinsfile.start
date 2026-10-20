@@ -156,11 +156,6 @@ spec:
         //    Jenkins report as a PR comment.
         //    See labs/LAB4_LINTING.md.
 
-        // ── Lab 5: DCR & Reporting ───────────────────────────────
-        //    Add a DCR generation stage; Bob pushes the result to
-        //    Jira via the Jira MCP server.
-        //    See labs/LAB5_DCR_REPORTING.md.
-        
     }
 
     post {

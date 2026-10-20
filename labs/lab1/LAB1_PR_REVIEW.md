@@ -43,7 +43,7 @@ By the end, every push triggers a structured PR review in your Jenkins console �
 
 ## Part 0 — Learn a little about the provided modes you'll be using
 
-This morning's intro covered modes and custom modes. From here on out, every lab leans on two custom modes that ship with this repo:
+Every lab leans on two custom modes that ship with this repo:
 
 - **Mode Writer** (`mode-writer`) — used in most labs to create new custom modes. By default it may only write the mode definition into `.bob/custom_modes.yaml`, but you can ask it explicitly to generate **rules files** (or add them yourself later) to sharpen the mode's behavior beyond what fits in a single YAML block.
 - **Jenkins Pipeline Integration** (`jenkins-bob-integration`) — used in every lab that touches the Jenkinsfile. It's been pre-loaded with the specifics of this workshop's pipeline environment (containers, the `askBob` helper, our credential pattern) so you spend time on the lab's goal instead of debugging environment quirks.
@@ -218,7 +218,7 @@ Did the mode's risk band match your call on each one? If it under-rated somethin
 - **Pipeline fails with `fatal: detected dubious ownership in repository`.** Git refuses to operate when the directory's owner UID doesn't match the user running git. The `build-tools` (maven) container runs as a different user than the one that owns the checked-out files. Fix: add `git config --global --add safe.directory "$WORKSPACE"` as the **first** command in your stage's shell step, before any other git invocation. Use `$WORKSPACE` rather than the `'*'` wildcard so you're only trusting the directory you actually need.
 - **Bob says `git-diff.txt` "is not accessible from the current workspace directory".** This means your stage wrote the diff to an absolute path outside Bob's reachable directory tree — almost always `/workspace/git-diff.txt` instead of `git-diff.txt`. Bob's CWD is the Jenkins job workspace (`/workspace/workspace/<folder>/<job>/`), not the root of the shared volume; its tooling won't reach up out of its own workspace. Fix: write the diff to a **relative path** (`git-diff.txt`, no leading slash) and tell Bob to read the same relative path.
 - **Bob output looks like a novel, not a triage summary.** The mode's rules file probably isn't constraining output length. Re-open Mode Writer and refine the rules to enforce brevity — cap per-change output to a few lines, require the three-section structure, tell Bob to skip uninteresting changes.
-- **`Jenkinsfile` not working?** Copy `labs/sre/lab1/Jenkinsfile.lab1solution` over your own `Jenkinsfile` and push. That's the reference state after Lab 1 and a safe reset point.
+- **`Jenkinsfile` not working?** Copy `labs/lab1/Jenkinsfile.lab1solution` over your own `Jenkinsfile` and push. That's the reference state after Lab 1 and a safe reset point.
 
 ---
 

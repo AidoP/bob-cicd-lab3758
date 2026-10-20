@@ -10,33 +10,30 @@ TechXchange 2026 Labs demonstrating how to integrate [IBM Bob](https://bob.ibm.c
 **All participants must complete setup first:**
 
 1. **📋 [Prerequisites](PREREQUISITES.md)** — Ensure you have the requirements and initial configuration for the labs.
-2. **Choose your track** based on your role
-    - [SRE](labs/sre/) - Series of labs around Bob for the SRE and CI Pipeline.
-    - [Applciation Team](labs/app/) - Series of labs around Bob for app teams and development processes.
-3. **Optional:** Explore [Handoff Labs](labs/handoff-labs/) for advanced scenarios after completing your track
+2. **Start the [labs](labs/)** - Series of labs around Bob and the CI pipeline.
+3. **Optional:** Explore [Handoff Labs](labs/handoff-labs/) for advanced scenarios after completing the labs
 
 ---
 
 ## Workshop Structure
 
-### 🏗️ [SRE Labs](labs/sre/) — Jenkins Pipeline Integration
+### 🏗️ [Workshop Labs](labs/) — Jenkins Pipeline Integration
 
-**Duration:** 3-5 hours | **Level:** Intermediate to Advanced | **For SRE teams**
+**Duration:** 3-5 hours | **Level:** Intermediate to Advanced
 
-Build a complete Jenkins CI/CD pipeline with Bob integration across 6 progressive labs:
+Build a complete Jenkins CI/CD pipeline with Bob integration across 5 progressive labs:
 
 1. **PR / Git Diff Review** — Bob analyzes diffs, identifies risks, provides summaries
 2. **Unit Testing** — Generate tests, diagnose failures, add pipeline test stages
 3. **Security Scanning** — Run security scans, Bob analyzes vulnerabilities
 4. **Linting** — Run linters, Bob analyzes findings and posts PR comments
-5. **DCR & Reporting** — Generate Deployment Change Requests, push reports to Jira via MCP
-6. **Jenkins Pipeline Insights with MCP** — Configure the Jenkins MCP server to interact with your Jenkins instance directly from Bob
+5. **Jenkins Pipeline Insights with MCP** — Configure the Jenkins MCP server to interact with your Jenkins instance directly from Bob
 
-**Prerequisites:** Jenkins access, basic pipeline knowledge. Complete [`labs/sre/00_SETUP.md`](labs/sre/00_SETUP.md) before starting Lab 1.
+**Prerequisites:** Jenkins access, basic pipeline knowledge. Complete [`labs/00_SETUP.md`](labs/00_SETUP.md) before starting Lab 1.
 
 #### Pipeline Scaffolding
 
-The SRE labs use a progressive Jenkinsfile approach where you build up the pipeline stage by stage.
+The labs use a progressive Jenkinsfile approach where you build up the pipeline stage by stage.
 
 **How it works:** Each pipeline build spins up a Kubernetes pod with multiple side car containers:
 
@@ -47,22 +44,9 @@ The containers share an `emptyDir` workspace volume at `/workspace`. When the pi
 
 ---
 
-### 💻 [App Labs](labs/app/) — Application Development
-
-**Duration:** 1-2 hours | **Level:** Intermediate | **For application development teams**
-
-Experience Bob as an always-on partner for application development in regulated environments:
-
-1. **Lab 1: Code Review** — PCI compliance analysis, automated reports, remediation guidance
-2. **Lab 2: Semantic Versioning** — Breaking change detection, version recommendations, release notes
-
-**Tech Stack:** Spring Boot 3.2, Java 17, PostgreSQL, Maven
-
----
-
 ### 🚀 [Handoff Labs](labs/handoff-labs/) — Additional Scenarios
 
-**Duration:** 30 min - 3+ hours | **Level:** Intermediate to Advanced | **Optional / After completing your track**
+**Duration:** 30 min - 3+ hours | **Level:** Intermediate to Advanced | **Optional / After completing the workshop labs**
 
 Advanced labs for specialized use cases and extending Bob's capabilities:
 
@@ -81,16 +65,15 @@ Advanced labs for specialized use cases and extending Bob's capabilities:
 
 ```text
 ├── labs/
-│   ├── intro-labs/          Bob fundamentals (START HERE - 2 labs)
-│   ├── sre/                 Jenkins pipeline integration (6 labs)
-│   ├── app/                 Application development workflows (2 labs)
+│   ├── 00_SETUP.md          Participant setup (Jenkins pipeline + working branch)
+│   ├── lab1 … lab4, lab6    Jenkins pipeline integration labs
 │   └── handoff-labs/        Advanced scenarios and custom modes (6 labs)
 │
-├── order-service/           Spring Boot demo app (used in SRE & App labs)
+├── order-service/           Spring Boot demo app (used in the labs)
 │
 ├── setup/                   Instructor setup guides and scripts
 │
-├── Jenkinsfile              Base pipeline (SRE labs starting point)
+├── Jenkinsfile              Base pipeline (labs starting point)
 ├── .bob/                    Bob configuration (modes, MCP servers)
 └── PREREQUISITES.md         System requirements and dependencies
 ```

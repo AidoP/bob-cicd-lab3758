@@ -44,7 +44,7 @@ By the end, a failing test won't just turn the build yellow — Bob will explain
 - [ ] Lab 1 complete (askBob helper added to your Jenkinsfile)
 - [ ] You're on your working branch (e.g. `user1-labs`)
 
-**Reset your Jenkinsfile first.** Remove the stages you added in previous labs, keeping only the `Checkout` stage and the `askBob` helper at the bottom. Stacking every lab's stages stretches a single build past 15 minutes — clearing them keeps iteration fast and the logs readable. Use [`solution/Jenkinsfile.start`](../../../solution/Jenkinsfile.start) as the reference shape.
+**Reset your Jenkinsfile first.** Remove the stages you added in previous labs, keeping only the `Checkout` stage and the `askBob` helper at the bottom. Stacking every lab's stages stretches a single build past 15 minutes — clearing them keeps iteration fast and the logs readable. Use [`solution/Jenkinsfile.start`](../../solution/Jenkinsfile.start) as the reference shape.
 
 ---
 
@@ -205,7 +205,7 @@ Did Bob's root-cause guess match yours? If it mis-diagnosed something obvious, t
 - **`junit` step says "no test reports".** The path is wrong. It should be `order-service/target/surefire-reports/*.xml` — verify the glob matches what `mvn test` actually wrote.
 - **Bob's analysis runs even when tests pass.** Bob is unconditionally invoked. Move the `askBob` call inside an `if` that checks for failures (e.g., `if (currentBuild.result == 'UNSTABLE')`) so it only runs when there's something to diagnose.
 - **Bob's output is too generic ("the test failed because the assertion failed").** The rules aren't constraining the analysis enough. Re-open Mode Writer and tighten the rules: require Bob to name the failing line, the expected vs. actual values, and a specific code-level fix.
-- **`Jenkinsfile` broken?** Copy `labs/sre/lab2/Jenkinsfile.lab2solution` over your own `Jenkinsfile` and push. That's the reference state after Lab 2 (Lab 1 + Lab 2 stages).
+- **`Jenkinsfile` broken?** Copy `labs/lab2/Jenkinsfile.lab2solution` over your own `Jenkinsfile` and push. That's the reference state after Lab 2 (Lab 1 + Lab 2 stages).
 
 ---
 

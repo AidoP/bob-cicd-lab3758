@@ -63,7 +63,7 @@ By the end, every push triggers automated security scanning in your Jenkins pipe
 - [ ] Lab 1 complete (askBob helper added to your Jenkinsfile)
 - [ ] You're on your working branch (e.g. `user1-labs`)
 
-**Reset your Jenkinsfile first.** Remove any stages you added in previous labs, keeping only the `Checkout` stage and the `askBob` helper at the bottom. Stacking every lab's stages stretches a single build past 15 minutes — clearing them keeps iteration fast and the logs readable. Use [`solution/Jenkinsfile.start`](../../../solution/Jenkinsfile.start) as the reference shape.
+**Reset your Jenkinsfile first.** Remove any stages you added in previous labs, keeping only the `Checkout` stage and the `askBob` helper at the bottom. Stacking every lab's stages stretches a single build past 15 minutes — clearing them keeps iteration fast and the logs readable. Use [`solution/Jenkinsfile.start`](../../solution/Jenkinsfile.start) as the reference shape.
 
 
 ## Part 1: Inject Security Vulnerabilities
@@ -82,7 +82,7 @@ Bob run script inject_vulnerabilities.sh
 ```
 
 **What Bob does:**
-- Executes `labs/sre/lab3/inject_vulnerabilities.sh`
+- Executes `labs/lab3/inject_vulnerabilities.sh`
 - Modifies `order-service/src/main/java/com/example/orders/service/OrderService.java`
 - Injects vulnerable dependencies into `order-service/pom.xml`
 - Injects 9 types of vulnerabilities:
@@ -192,7 +192,7 @@ Before importing the mode, take a moment to understand what it does and how it d
 
 **Prompt to Bob:**
 ```
-Read labs/sre/lab3/software-security-reviewer.yaml and explain what the Software Security Reviewer mode does and how it differs from Bob Findings. What types of analysis does it perform?
+Read labs/lab3/software-security-reviewer.yaml and explain what the Software Security Reviewer mode does and how it differs from Bob Findings. What types of analysis does it perform?
 ```
 
 **What Bob explains:**
@@ -203,7 +203,7 @@ Read labs/sre/lab3/software-security-reviewer.yaml and explain what the Software
 
 **Option 2: Review the file yourself**
 
-Navigate to `labs/sre/lab3/software-security-reviewer.yaml` and review the mode configuration to understand its capabilities.
+Navigate to `labs/lab3/software-security-reviewer.yaml` and review the mode configuration to understand its capabilities.
 
 **Key Differences:**
 
@@ -222,13 +222,13 @@ Now let's import and use this powerful mode.
 Let's import the specialized **Software Security Reviewer** mode:
 
 1. **Locate the mode file:**
-   - Navigate to: `labs/sre/lab3/software-security-reviewer.yaml`
+   - Navigate to: `labs/lab3/software-security-reviewer.yaml`
 
 2. **Import the mode into Bob:**
    - Click the **Settings icon** (⚙️) in the top right corner of Bob
    - Click **"Modes"** in the settings menu
    - Click **"Import"** button
-   - Select the file: `labs/sre/lab3/software-security-reviewer.yaml`
+   - Select the file: `labs/lab3/software-security-reviewer.yaml`
    - Click **"Import"** to confirm
 
 3. **Verify the mode was imported:**
@@ -740,7 +740,7 @@ If you wish to integrate the Software Security Reviewer mode into your pipeline,
 
 **Prompt to Bob:**
 ```
-git add Jenkinsfile .bob/ labs/sre/lab3/ order-service/src/main/java/com/example/orders/service/OrderService.java order-service/pom.xml
+git add Jenkinsfile .bob/ labs/lab3/ order-service/src/main/java/com/example/orders/service/OrderService.java order-service/pom.xml
 git commit -m "Lab 3 — Security Analysis stage with vulnerability scanning and injected vulnerabilities for testing"
 git push
 ```
