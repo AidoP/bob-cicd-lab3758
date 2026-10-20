@@ -2,7 +2,7 @@
 
 ![banner](resources/banner.png)
 
-TechXchange 2026 Labs demonstrating how to integrate [IBM Bob](https://bob.ibm.com) into CI/CD pipelines to inject AI into development delivery processes.
+TechXchange 2026 Labs demonstrating how to integrate [IBM Bob](https://bob.ibm.com) into CI/CD pipelines, to inject AI across the development delivery processes.
 
 
 ## Getting Started
@@ -10,18 +10,18 @@ TechXchange 2026 Labs demonstrating how to integrate [IBM Bob](https://bob.ibm.c
 **All participants must complete setup first:**
 
 1. **📋 [Prerequisites](PREREQUISITES.md)** — Ensure you have the requirements and initial configuration for the labs.
-2. **Start the [labs](labs/)** - Series of labs around Bob and the CI pipeline.
+2. **Run through the [labs](labs/)** - Series of labs around Bob and the CI pipeline.
 3. **Optional:** Explore [Handoff Labs](labs/handoff-labs/) for advanced scenarios after completing the labs
 
 ---
 
 ## Workshop Structure
 
-### 🏗️ [Workshop Labs](labs/) — Jenkins Pipeline Integration
+### 🏗️ [Labs](labs/) — Jenkins Pipeline Integration
 
-**Duration:** 3-5 hours | **Level:** Intermediate to Advanced
+**Duration:** 1 - 5 hours | **Level:** Intermediate to Advanced
 
-Build a complete Jenkins CI/CD pipeline with Bob integration across 5 progressive labs:
+Build a complete Jenkins pipeline with Bob integration across 5 progressive labs:
 
 1. **PR / Git Diff Review** — Bob analyzes diffs, identifies risks, provides summaries
 2. **Unit Testing** — Generate tests, diagnose failures, add pipeline test stages
@@ -31,14 +31,15 @@ Build a complete Jenkins CI/CD pipeline with Bob integration across 5 progressiv
 
 **Prerequisites:** Jenkins access, basic pipeline knowledge. Complete [`labs/00_SETUP.md`](labs/00_SETUP.md) before starting Lab 1.
 
-#### Pipeline Scaffolding
+### Pipeline Scaffolding
 
-The labs use a progressive Jenkinsfile approach where you build up the pipeline stage by stage.
+The labs can be built to use a progressive Jenkinsfile approach where you build up the pipeline stage by stage. For the purposes of demonstration and to save time, we will build and run the individual stages at each lab.
 
 **How it works:** Each pipeline build spins up a Kubernetes pod with multiple side car containers:
 
 - **`jenkins-agent`** — Runs pipeline shell steps (builds, tests, scans, lints)
 - **`bob-cli`** — Runs Bob CLI when invoked via `container('bob-cli') { ... }`
+- **`linting-tools`** — Contains all the linting tools used by the linting lab.
 
 The containers share an `emptyDir` workspace volume at `/workspace`. When the pipeline does `checkout scm`, the repo lands there, and Bob reads `.bob/custom_modes.yaml` directly from it — so any mode on your branch is available at pipeline runtime without rebuilding images.
 
@@ -55,7 +56,6 @@ Advanced labs for specialized use cases and extending Bob's capabilities:
 - **OpenShift Operations** — Manage OpenShift clusters using Bob's AI-native approach
 - **Python to JavaScript Translation** — Translate code between programming languages
 - **Simple App Development** — Build a full-stack application from scratch with Bob
-- **Java Application Modernization** — Modernize legacy Java applications from Java 8 to Java 17/21
 
 **For:** Teams with specific integration requirements or those wanting to customize Bob for their workflows.
 
@@ -66,13 +66,10 @@ Advanced labs for specialized use cases and extending Bob's capabilities:
 ```text
 ├── labs/
 │   ├── 00_SETUP.md          Participant setup (Jenkins pipeline + working branch)
-│   ├── lab1 … lab4, lab6    Jenkins pipeline integration labs
+│   ├── lab1 … lab5          Jenkins pipeline integration labs
 │   └── handoff-labs/        Advanced scenarios and custom modes (6 labs)
 │
 ├── order-service/           Spring Boot demo app (used in the labs)
-│
-├── setup/                   Instructor setup guides and scripts
-│
 ├── Jenkinsfile              Base pipeline (labs starting point)
 ├── .bob/                    Bob configuration (modes, MCP servers)
 └── PREREQUISITES.md         System requirements and dependencies

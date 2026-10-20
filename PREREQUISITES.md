@@ -11,7 +11,7 @@
 
 - [Java 17](https://adoptium.net/temurin/releases/?version=17)
 - [Maven](https://maven.apache.org/install.html)
-- [`uv`](https://docs.astral.sh/uv/getting-started/installation/) — single install, provides both `uv` and `uvx` (used by the Jenkins MCP server in Lab 6)
+- [`uv`](https://docs.astral.sh/uv/getting-started/installation/) — single install, provides both `uv` and `uvx` (used by the Jenkins MCP server Lab)
 
 ## Credentials (handed out by your instructor)
 
