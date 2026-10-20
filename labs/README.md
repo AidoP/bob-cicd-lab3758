@@ -23,7 +23,7 @@ Before starting any labs, complete the setup: follow the [Setup Instructions](00
 
 ### Workshop Structure
 
-1. **Workshop Labs** (Labs 1-4 and 6) - CI/CD pipeline automation with Bob and Jenkins
+1. **Workshop Labs** (Labs 1-5) - CI/CD pipeline automation with Bob and Jenkins
 2. **Handoff Labs** (6 labs) - Optional advanced topics and custom integrations
 
 ---
@@ -139,9 +139,9 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ---
 
-### Lab 6: Jenkins Pipeline Insights with MCP
+### Lab 5: Jenkins Pipeline Insights with MCP
 
-**Time**: 15 minutes | **File**: [lab6/LAB6_JENKINS_MCP.md](lab6/LAB6_JENKINS_MCP.md)
+**Time**: 15 minutes | **File**: [lab6/LAB6_JENKINS_MCP.md](lab5/LAB5_JENKINS_MCP.md)
 
 **What You'll Do:**
 
@@ -225,18 +225,6 @@ Build a complete full-stack application from scratch with Bob.
 **Topics**: Full-stack development, Flask REST API, SQLite, HTML/CSS/JavaScript, CRUD operations
 
 **Prerequisites**: Python 3.8+, Node.js 14+
-
----
-
-### 6. Java Application Modernization
-
-**Time**: 45-60 minutes | **File**: [handoff-labs/simple-java-modernization/README.md](handoff-labs/simple-java-modernization/README.md)
-
-Modernize legacy Java applications from Java 8 to Java 17/21.
-
-**Topics**: Records, sealed classes, pattern matching, switch expressions, API updates, virtual threads
-
-**Prerequisites**: Java 17 or 21, Maven or Gradle
 
 ---
 
