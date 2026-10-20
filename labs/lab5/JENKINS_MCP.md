@@ -1,4 +1,4 @@
-# Lab 6 — Jenkins Pipeline Insights with MCP
+# Lab — Jenkins Pipeline Insights with MCP
 
 ## Table of Contents
 
@@ -11,7 +11,6 @@
 - [Part 4 — Optional: Advanced Jenkins Automation](#part-4--optional-advanced-jenkins-automation)
 - [Troubleshooting](#troubleshooting)
 
----
 
 ## Overview
 
@@ -32,8 +31,7 @@ In this lab, you'll configure the Jenkins MCP server to interact with your Jenki
 - Automate monitoring: "Alert me if the success rate drops below 80%"
 - Correlate with code: "Which commit caused build #42 to fail?"
 
-> [!NOTE]
->
+> _**Note:**_
 > - It is assumed you have completed some or all of the previous labs so that there will be pipelines and pipeline runs in the instance.
 > - The Jenkins MCP server is configured using `mcp-jenkins` via `uvx`.
 
@@ -42,14 +40,11 @@ In this lab, you'll configure the Jenkins MCP server to interact with your Jenki
 In this lab, you won't actually build anything, but you will use the Jenkins MCP server to interact with your Jenkins instance directly from Bob. You will use the MCP server to explore:
 
 - **Pipeline discovery tools** — query all pipelines on your Jenkins instance, explore their configurations, and understand their structure.
-
 - **Build analysis capabilities** — inspect specific builds, retrieve logs, analyze test results, and identify failure causes.
-
 - **Automated insights** — generate reports on pipeline health, identify patterns in failures, spot flaky tests, and correlate issues with code changes.
 
 By the end, you'll be able to monitor and analyze your Jenkins pipelines entirely through Bob, automating common queries and generating actionable insights.
 
----
 
 ## Before you start
 
@@ -107,27 +102,6 @@ Next, lets setup the MCP server. The `.bob/mcp.json` file already exists at the 
     }
     ```
 
-    - If you already have another MCP server configured (for example `atlassian`), your file should look like this:
-
-        ```json
-        {
-        "mcpServers": {
-            "atlassian": {
-                .....
-            },
-            "jenkins": {
-            "command": "bash",
-            "args": [
-                "-c",
-                "set -a; source .env; set +a; exec uvx mcp-jenkins --jenkins-url \"$JENKINS_URL\" --jenkins-username \"$JENKINS_USERNAME\" --jenkins-password \"$JENKINS_API_TOKEN\""
-            ],
-            "disabled": false,
-            "alwaysAllow": []
-            }
-        }
-        }
-        ```
-
 1. Save the `mcp.json` file.
 
 Next, we have to add the credentials to our environment file.
@@ -140,7 +114,7 @@ Next, we have to add the credentials to our environment file.
     JENKINS_API_TOKEN=your-api-token
     ```
 
-    > [!NOTE]
+    >_**Note:**_
     > - You dont need quotes around the values, nor spaces around the `=`
     > - The URL should include `https://` but no trailing slash
     > - `.env` is gitignored, so your token won't be committed
@@ -181,7 +155,6 @@ Finally, lets run a quick test to make sure the MCP server is working.
 
     ![jenkins_mcp_1.png](assets/jenkins_mcp_1.png)
 
----
 
 ## Part 2 — Pipeline Information
 
@@ -203,7 +176,7 @@ Now that the server is connected, let's explore what's on your Jenkins instance.
 
     > **Note:** we are using the folder/pipelinename syntax to specify the pipeline. It should match what was returned in step 1 of Part 2.
 
-Bob will call several tools to provide a comprehensive summary of your pipeline including details like: Pipeline description, Last build number and status, Recent build history, Build artifacts (if any), and more.
+1. Bob will call several tools to provide a comprehensive summary of your pipeline including details like: Pipeline description, Last build number and status, Recent build history, Build artifacts (if any), and more.
 
 1. Spend some time exploring the response from Bob.
 
@@ -223,7 +196,6 @@ Bob will call several tools to provide a comprehensive summary of your pipeline 
 
 1. Bob will analyze the data and give you some trends around your pipeline builds, potential issues and recommendations for improvement.
 
----
 
 ## Part 3 — Analysis and Insights
 
@@ -263,9 +235,8 @@ Now let's explore a couple of more complex / comprehensive scenarios we can expl
     - Recommendations for improvement
     ```
 
----
 
-## Part 4 — Optional: Advanced Jenkins Automation
+## Part 4 — Advanced Jenkins Automation (OPTIONAL)
 
 The above sections are just some of the things you can do with Bob integrated with the Jenkins MCP server. Feel free to explore different scenarios and use cases with different prompts. Keep in mind that getting information in/out of the Jenkins instance is based on the tools available in the MCP server.  If you've completed Parts 1-3 and want to explore further, try these challenges.
 

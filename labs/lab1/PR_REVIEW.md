@@ -1,9 +1,8 @@
-# Lab 1 — PR / Git Diff Review with Bob
+# Lab — PR / Git Diff Review with Bob
 
 ## Table of Contents
 
-- [Overview of Lab 1](#overview-of-lab-1)
-  - [What you'll build in Lab 1](#what-youll-build-in-lab-1)
+- [Overview of Lab](#overview-of-lab)
 - [Before you start](#before-you-start)
 - [Part 0 — Learn a little about the provided modes you'll be using](#part-0--learn-a-little-about-the-provided-modes-youll-be-using)
 - [Part 1 — Add the `askBob` helper to your Jenkinsfile](#part-1--add-the-askbob-helper-to-your-jenkinsfile)
@@ -14,25 +13,19 @@
 - [Part 6 — Stress-test the mode (optional)](#part-6--stress-test-the-mode-optional)
 - [Stuck?](#stuck)
 
----
+## Overview of Lab
 
-## Overview of Lab 1
+In this lab you will complete the following: 
 
-You'll build a working pipeline stage that can be analyzed with the behavior you want in a reusable Bob custom mode.
+- Add a **`askBob` helper function** — your pipeline's reusable interface to Bob. One helper, optional second argument for pinning a custom mode. Every subsequent lab calls this same helper.
 
-### What you'll build in Lab 1
+- **A built-in look at the diff** — before writing any pipeline code, you'll use Bob in your IDE to analyze the git diffs. The output is fine but unstructured — that gap is what motivates the next part.
 
-1. **The `askBob` helper function** — your pipeline's reusable interface to Bob. One helper, optional second argument for pinning a custom mode. Every subsequent lab calls this same helper.
+- Create a **custom Bob mode** (`pipeline-git-diff-overview`) built with **Mode Writer**, this mode pins the output shape and the read-only permissions a CI mode should have. Your pipeline stage will hand Bob a one-line prompt and the mode does the rest.
 
-2. **A built-in look at the diff** — before writing any pipeline code, you'll use Bob in your IDE (Advanced mode) to analyze the branch diff. The output is fine but unstructured — that gap is what motivates the next part.
-
-3. **A custom Bob mode** (`pipeline-git-diff-overview`) — built with **Mode Writer**, this mode pins the output shape and the read-only permissions a CI mode should have. Your pipeline stage will hand Bob a one-line prompt and the mode does the rest.
-
-4. **The `PR Review` stage** — uses the **Jenkins Pipeline Integration** mode (provided in this repo) to write a stage that calls `askBob` with your new mode and archives the result.
+- Add a **`PR Review` stage**, which uses the **Jenkins Pipeline Integration** mode (provided in this repo) to write a stage that calls `askBob` with your new mode and archives the result.
 
 By the end, every push triggers a structured PR review in your Jenkins console — and you've practiced the prompt-then-mode loop you'll repeat for unit tests, security scans, and linting in the labs that follow.
-
----
 
 ## Before you start
 
@@ -53,150 +46,133 @@ Take a quick glance at the rules files behind each mode to see how customizable 
 - `.bob/rules-mode-writer/` (4 files)
 - `.bob/rules-jenkins-bob-integration/` (8 files)
 
----
-
 ## Part 1 — Add the `askBob` helper to your Jenkinsfile
 
 Every stage of the pipeline that invokes Bob has to do the same two things: step into `container('bob')` and run `bob …`. Factor that out **once** and each stage just passes a prompt and gets back the analysis string to do whatever it wants with.
 
-The code for this function is shared below. Paste the helper into your `@Jenkinsfile` at the bottom, **outside** the `pipeline { }` block:
+1. The code for this function is shared below. Paste the helper into your `@Jenkinsfile` at the bottom, **outside** the `pipeline { }` block:
 
-```groovy
-// ── Helper: ask Bob, optionally with a specific custom mode ───────────────────
-// Writes the prompt to a tempfile in the shared workspace and runs `bob` in
-// the bob container, adding `--chat-mode <slug>` only when a mode is provided.
-// Returns the analysis as a string. Using a tempfile (instead of inlining the
-// prompt on the command line) avoids shell-escaping issues when the prompt
-// contains quotes, backticks, or newlines — common with diffs.
-def askBob(String prompt, String mode = null) {
-    container('bob') {
-        def promptFile = ".bob-prompt-${System.currentTimeMillis()}.txt"
-        writeFile file: promptFile, text: prompt
+    ```groovy
+    // ── Helper: ask Bob, optionally with a specific custom mode ───────────────────
+    // Writes the prompt to a tempfile in the shared workspace and runs `bob` in
+    // the bob container, adding `--chat-mode <slug>` only when a mode is provided.
+    // Returns the analysis as a string. Using a tempfile (instead of inlining the
+    // prompt on the command line) avoids shell-escaping issues when the prompt
+    // contains quotes, backticks, or newlines — common with diffs.
+    def askBob(String prompt, String mode = null) {
+        container('bob') {
+            def promptFile = ".bob-prompt-${System.currentTimeMillis()}.txt"
+            writeFile file: promptFile, text: prompt
 
-        def modeFlag = mode ? "--chat-mode ${mode}" : ""
-        def analysis = sh(
-            script: """bob ${modeFlag} -p "\$(cat ${promptFile})" --hide-intermediary-output""",
-            returnStdout: true
-        ).trim()
+            def modeFlag = mode ? "--chat-mode ${mode}" : ""
+            def analysis = sh(
+                script: """bob ${modeFlag} -p "\$(cat ${promptFile})" --hide-intermediary-output""",
+                returnStdout: true
+            ).trim()
 
-        sh "rm -f ${promptFile}"
-        return analysis
+            sh "rm -f ${promptFile}"
+            return analysis
+        }
     }
-}
-```
+    ```
 
-Once you've pasted the helper into your `@Jenkinsfile`, save the file, start a new task and switch to `Ask` mode. Ask bob:
+1. Once you've pasted the helper into your `@Jenkinsfile`, save the file, start a new task and switch to `Ask` mode. Ask bob:
 
-```
-Can you explain to me the key parts of the askBob function in @Jenkinsfile
-```
+    ```
+    Can you explain to me the key parts of the askBob function in @Jenkinsfile
+    ```
+1. In the pipeline, we will invoke Bob using the command:  `bob ${modeFlag} -p "$(cat ${promptFile})" --hide-intermediary-output`. What this command does is the following:
 
-The line that actually invokes Bob is:
-
-```sh
-bob ${modeFlag} -p "$(cat ${promptFile})" --hide-intermediary-output
-```
-
-Piece by piece:
-
-- **`bob`** — the Bob CLI, available in the `bob` container.
-- **`${modeFlag}`** — placeholder for the optional `--chat-mode <slug>` flag. When `askBob` is called with a second argument (a custom mode slug, e.g. `pipeline-git-diff-overview`), this expands to `--chat-mode pipeline-git-diff-overview` so Bob applies that mode's rules and tools. When no mode is passed, it's empty and Bob uses its built-in default. Custom modes are how you give a stage stable, structured output without spelling out the format in every prompt — you'll build one in Part 5.
-- **`-p "..."`** — runs Bob in one-shot prompt mode: take this prompt, do the work, print the result to stdout, exit. No interactive chat.
-- **`"$(cat ${promptFile})"`** — substitutes in the contents of a tempfile as the prompt. We go through a file (instead of inlining the prompt) because diffs and logs contain quotes, backticks, and newlines that wreck shell escaping.
-- **`--hide-intermediary-output`** — suppresses Bob's tool-call traces and "thinking" output so we capture only the final analysis. Without this, `returnStdout` would pick up everything Bob printed about its thought process along the way.
+    - **`bob`** — the Bob CLI, available in the `bob` container.
+    - **`${modeFlag}`** — placeholder for the optional `--chat-mode <slug>` flag. When `askBob` is called with a second argument (a custom mode slug, e.g. `pipeline-git-diff-overview`), this expands to `--chat-mode pipeline-git-diff-overview` so Bob applies that mode's rules and tools. When no mode is passed, it's empty and Bob uses its built-in default. Custom modes are how you give a stage stable, structured output without spelling out the format in every prompt — you'll build one in Part 5.
+    - **`-p "..."`** — runs Bob in one-shot prompt mode: take this prompt, do the work, print the result to stdout, exit. No interactive chat.
+    - **`"$(cat ${promptFile})"`** — substitutes in the contents of a tempfile as the prompt. We go through a file (instead of inlining the prompt) because diffs and logs contain quotes, backticks, and newlines that wreck shell escaping.
+    - **`--hide-intermediary-output`** — suppresses Bob's tool-call traces and "thinking" output so we capture only the final analysis. Without this, `returnStdout` would pick up everything Bob printed about its thought process along the way.
 
 
-Once you have a good understanding of how this helper works:
+1. With that understanding of how this helper works, commit your changes to the pipeline:
 
-```
-git add Jenkinsfile
-git commit -m "Add askBob helper to @Jenkinsfile"
-git push
-```
-
----
+    ```
+    git add Jenkinsfile
+    git commit -m "Add askBob helper to @Jenkinsfile"
+    git push
+    ```
 
 ## Part 2 - Use Bob to analyze git diff. 
 
-Start a new task and switch to `Agent` mode (bottom left of the Bob chat panel). Ask Bob to analyze the diff. Something like:
+1. Start a new task and switch to `Agent` mode (bottom left of the Bob chat panel). Ask Bob to analyze the diff. Something like:
 
-```
-Bob, analyze the diff between my branch and main.
-```
+    ```
+    Bob, analyze the diff between my branch and main.
+    ```
 
-You may need to approve the tool calls Bob tries to make.
+1. You may need to approve the tool calls Bob tries to make.
 
-Bob has the ability to analyze the diff using the `obtain_git_diff` tool, the Github MCP server or even with Github CLI. This is something you can specify in your `AGENTS.md` file once you gain a preference.
+1. Bob has the ability to analyze the diff using the `obtain_git_diff` tool, the Github MCP server or even with Github CLI. This is something you can specify in your `AGENTS.md` file once you gain a preference.
 
-This overview of the diff is fine, but we can implement custom modes to get more detailed and better formatted information. 
+1. This overview of the diff is fine, but we can implement custom modes to get more detailed and better formatted information. 
 
 ## Part 3 - Create the `pipeline-git-diff-overview` mode
 
 The overview Bob gave in Part 2 was unstructured — fine for one-off testing. A custom mode pins the output shape and the read-only permissions a CI mode should have.
 
-Start a new task and switch to **Mode Writer** mode. Mode Writer turns a prompt into a reusable custom mode — you describe the behavior you want once, and Bob applies it on every future invocation of that mode.
+1. Start a new task and switch to **Mode Writer** mode. Mode Writer turns a prompt into a reusable custom mode — you describe the behavior you want once, and Bob applies it on every future invocation of that mode.
 
-The prompt below is a starter for a senior-developer-style diff overview — a quick risk-oriented glance, not a full code review. Treat it as a base. Anything you want every PR overview to do (output format, patterns to flag, noise to skip, the tone you want Bob to take) belongs in this prompt.
+1. The prompt below is a starter for a senior-developer-style diff overview — a quick risk-oriented glance, not a full code review. Treat it as a base. Anything you want every PR overview to do (output format, patterns to flag, noise to skip, the tone you want Bob to take) belongs in this prompt.
 
-```
-Write a custom mode with slug `pipeline-git-diff-overview`. Append it to @.bob/custom_modes.yaml — don't overwrite anything else.
+    ```
+    Write a custom mode with slug `pipeline-git-diff-overview`. Append it to @.bob/custom_modes.yaml — don't overwrite anything else.
 
-Job: senior dev glancing at a PR's git diff. Quick risk-oriented overview, not a full review. For each notable change:
-  - 1–2 sentences on what changed
-  - Risk: high / medium / low
-  - Watch for: null-safety, concurrency, behavior changes, security surface, perf hot paths, missing tests
+    Job: senior dev glancing at a PR's git diff. Quick risk-oriented overview, not a full review. For each notable change:
+      - 1–2 sentences on what changed
+      - Risk: high / medium / low
+      - Watch for: null-safety, concurrency, behavior changes, security surface, perf hot paths, missing tests
 
-Output: plain text for a Jenkins console (no ANSI, no markdown tables). Sections: Summary, Risk, Watch for. Short — if nothing notable changed, say so in one sentence.
+    Output: plain text for a Jenkins console (no ANSI, no markdown tables). Sections: Summary, Risk, Watch for. Short — if nothing notable changed, say so in one sentence.
 
-Tool groups: read only.
-```
+    Tool groups: read only.
+    ```
 
-Read-only is deliberate — a pipeline mode should do the minimum it needs to. No IDE restart needed: Bob loads `custom_modes.yaml` fresh from the workspace on every pipeline run.
+    > Note: Read-only is deliberate — a pipeline mode should do the minimum it needs to. No IDE restart needed: Bob loads `custom_modes.yaml` fresh from the workspace on every pipeline run.
 
-Run the prompt and answer any questions Bob might have about the implementation. 
-
----
+1. Run the prompt and answer any questions Bob might have about the implementation. 
 
 ## Part 4 — Build the `PR Review` stage
 
-Now that you have created a custom mode, let's add the new stage to the `Jenkinsfile`. Start a new task, and switch to the provided **Jenkins Pipeline Integration** mode. This mode was provided to minimize configuration issues with the environment. It knows about `askBob`, the build-tools container, output archiving, and `catchError` resilience patterns. Rules live in `.bob/rules-jenkins-bob-integration/` if you want to look.
+Now that you have created a custom mode, let's add the new stage to the `Jenkinsfile`. 
 
-Paste the following prompt:
+1. Start a new task, and switch to the provided **Jenkins Pipeline Integration** mode. This mode was provided to minimize configuration issues with the environment. It knows about `askBob`, the build-tools container, output archiving, and `catchError` resilience patterns. Its rules live in `.bob/rules-jenkins-bob-integration/` if you want to look.
 
-```
-  Add a "PR Review" stage to @Jenkinsfile right after the Checkout stage. The stage should:
+1. Paste the following prompt:
 
-  - Compute the PR diff and write it to git-diff.txt
-  - Call askBob with the pipeline-git-diff-overview mode and a short prompt
-    asking it to read git-diff.txt and produce the overview
-  - Save the analysis to bob-pr-review.md and archive it as a build artifact
-  ```
+    ```
+    Add a "PR Review" stage to @Jenkinsfile right after the Checkout stage. The stage should:
 
-  Provide feedback to Bob where needed and consider turning on auto-approval for some tool calls. 
+    - Compute the PR diff and write it to git-diff.txt
+    - Call askBob with the pipeline-git-diff-overview mode and a short prompt asking it to read git-diff.txt and produce the overview
+    - Save the analysis to bob-pr-review.md and archive it as a build artifact
+    ```
 
----
+  1. Provide feedback to Bob where needed and consider turning on auto-approval for some tool calls. 
 
 
 ## Part 5 — Push and watch
 
-```bash
-git add Jenkinsfile .bob/
-git commit -m "Lab 1 — PR review stage with askBob helper + pipeline-git-diff-overview mode"
-git push
-```
+1. Next, lets commit our changes:
+    ```bash
+    git add Jenkinsfile .bob/
+    git commit -m "Lab 1 — PR review stage with askBob helper + pipeline-git-diff-overview mode"
+    git push
+    ```
 
-In Jenkins, click **Build Now** on your pipeline and watch the console.
+1. In Jenkins, click **Build Now** on your pipeline and watch the console. We expect the following:
+    - `Checkout` stage turns green
+    - `PR Review` stage runs next. The console shows your stage's banner (`Bob — PR Review` or however you wrote it) with Bob's summary / risk / watch-for output between the banner lines
+    - Build page lists `bob-pr-review.md` under **Build Artifacts**
+    - Pipeline ends SUCCESS
 
-Expected:
+1. Open the archived artifact from the build page and you've got a persistent record of Bob's take on that commit — searchable in Jenkins's build history.
 
-- `Checkout` stage turns green
-- `PR Review` stage runs next. The console shows your stage's banner (`Bob — PR Review` or however you wrote it) with Bob's summary / risk / watch-for output between the banner lines
-- Build page lists `bob-pr-review.md` under **Build Artifacts**
-- Pipeline ends SUCCESS
-
-Open the archived artifact from the build page and you've got a persistent record of Bob's take on that commit — searchable in Jenkins's build history.
-
----
 
 ## Part 6 — Stress-test the mode (optional)
 

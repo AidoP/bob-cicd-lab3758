@@ -49,7 +49,7 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ### Lab 1: PR/Git Diff Review with Bob
 
-**Time**: 20 minutes | **File**: [lab1/PR_REVIEW.md](lab1/PR_REVIEW.md)
+**Time**: 15 minutes | **File**: [lab1/PR_REVIEW.md](lab1/PR_REVIEW.md)
 
 **What You'll Do:**
 
@@ -71,7 +71,7 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ### Lab 2: Unit Testing with Bob
 
-**Time**: 20 minutes | **File**: [lab2/UNIT_TESTING.md](lab2/UNIT_TESTING.md)
+**Time**: 15 minutes | **File**: [lab2/UNIT_TESTING.md](lab2/UNIT_TESTING.md)
 
 **What You'll Do:**
 
@@ -94,7 +94,7 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ### Lab 3: Security Vulnerability Analysis
 
-**Time**: 30 minutes | **File**: [lab3/SECURITY_ANALYSIS.md](lab3/SECURITY_ANALYSIS.md)
+**Time**: 25 minutes | **File**: [lab3/SECURITY_ANALYSIS.md](lab3/SECURITY_ANALYSIS.md)
 
 **What You'll Do:**
 
@@ -118,7 +118,7 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ### Lab 4: Linting and Compliance
 
-**Time**: 20 minutes | **File**: [lab4/LINTING.md](lab4/LINTING.md)
+**Time**: 15 minutes | **File**: [lab4/LINTING.md](lab4/LINTING.md)
 
 **What You'll Do:**
 
@@ -139,7 +139,7 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ---
 
-### Lab 5: Jenkins Pipeline Insights with MCP
+### [Optional] Lab 5: Jenkins Pipeline Insights with MCP
 
 **Time**: 15 minutes | **File**: [lab5/JENKINS_MCP.md](lab5/JENKINS_MCP.md)
 
@@ -228,14 +228,7 @@ Build a complete full-stack application from scratch with Bob.
 
 ---
 
-## 🚀 Quick Start
-
-### Choose Your Path
-
-1. **Start here** → Follow the [Workshop Labs](#-workshop-labs) (complete Setup first)
-2. **Want to go further?** → Explore the [Handoff Labs](#-handoff-labs-advanced-topics)
-
-### Working with Bob
+## 🚀 Working with Bob
 
 **Tips:**
 
@@ -292,7 +285,6 @@ After completing the workshop labs, you'll know how to:
 ## 📚 Additional Resources
 
 - **Bob Documentation**: [https://bob.ibm.com/docs](https://bob.ibm.com/docs)
-- **Bob Differentiators**: [resources/bob-differentiators.md](../resources/bob-differentiators.md)
 - **Custom Modes Guide**: [https://bob.ibm.com/docs/ide/configuration/custom-modes](https://bob.ibm.com/docs/ide/configuration/custom-modes)
 - **MCP Protocol**: [https://modelcontextprotocol.io](https://modelcontextprotocol.io)
 

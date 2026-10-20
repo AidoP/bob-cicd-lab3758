@@ -1,14 +1,11 @@
 # Workshop Prerequisites
 
-## Universal (everyone)
+## Participant Environment / Device
 
 - [Bob IDE](https://bob.ibm.com/docs/ide/getting-started/install-and-setup)
 - [Git](https://git-scm.com/downloads)
 - A terminal
 - A modern web browser
-
-## Workshop Labs
-
 - [Java 17](https://adoptium.net/temurin/releases/?version=17)
 - [Maven](https://maven.apache.org/install.html)
 - [`uv`](https://docs.astral.sh/uv/getting-started/installation/) — single install, provides both `uv` and `uvx` (used by the Jenkins MCP server Lab)

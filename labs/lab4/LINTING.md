@@ -1,4 +1,4 @@
-# Lab 4 — Linting and Compliance with Bob
+# Lab — Linting and Compliance with Bob
 
 ## Table of Contents
 
@@ -12,21 +12,17 @@
 - [Part 5 — Optional: Advanced Linting Challenges](#part-5--optional-advanced-linting-challenges)
 - [Troubleshooting](#troubleshooting)
 
----
 
 ## Overview
 
 In this lab, you'll add a multi-tool linting and compliance workflow to the pipeline. All the while using IBM Bob to interpret results and provide recommendations.
 
-> [!NOTE]
->
-> - [`order-service/pom.xml`](order-service/pom.xml:74-88) already includes [Checkstyle](https://checkstyle.sourceforge.io/) configuration with Google's style checks. This lab leverages that existing configuration for both IDE and pipeline linting.
-> - This lab makes use of the jenkins project / namespace. If you are using a different namespace, please update the Jenkinsfile appropriately.
-
 - You'll use the Checkstyle for Java linter to find and fix Java code quality issues in the IDE.
 - You'll use [Hadolint](https://github.com/hadolint/hadolint) to find issues in the `Dockerfile`.
 - You'll use [Checkov](https://www.checkov.io/) to find issues in the deployment manifests.
 - You'll use [KubeLinter](https://docs.kubelinter.io/) to find issues in the Kubernetes workload.
+
+> **Note:** The [`order-service/pom.xml`](order-service/pom.xml:74-88) already includes [Checkstyle](https://checkstyle.sourceforge.io/) configuration with Google's style checks. This lab leverages that existing configuration for both IDE and pipeline linting.
 
 This lab intentionally makes use of slightly flawed deployment files with predictable findings. That allows us to focus on using AI to:
 
@@ -40,9 +36,7 @@ This lab intentionally makes use of slightly flawed deployment files with predic
 By the end of this lab, you will use Bob to not just interact with linters — but it will explain what matters, which issues overlap across tools, what to fix first, and how to remediate them.
 
 - **A Bob mode for lint reporting** (`pipeline-lint-analyzer`) — a read-only mode that reads the raw output from multiple linters and turns it into a Jenkins-friendly report.
-
 - **A new set of pipeline stages** — one stage runs the linters (including Checkstyle), one stage asks Bob to summarize the results.
-
 - **A final Bob-enriched lint report** — archived in Jenkins as a build artifact and summarized in a comment artifact.
 
 **Key Concepts** you will learn:
@@ -131,7 +125,6 @@ Bob was not only able to find and read the report, it was able to provide immedi
 
 > **Note:** The prompts we are using can be adapted based on different perspectives, goals and end users.
 
----
 
 ## Part 2 — Deployment Artifact Linting
 
@@ -166,7 +159,6 @@ Beyond linting of the code artifacts, we can use Bob to inspect the deployment a
 
 While we could fix these issues now, we will leave these "flaws" in place to see how we can use Bob + various linters to identify the issues and suggest the appropriate fixes in a CI/CD pipeline.
 
----
 
 ## Part 3 — Create the Bob Linter mode and Pipeline Stage
 
@@ -270,7 +262,6 @@ Now, we will create a reusable Bob mode that specializes in lint analysis, insig
 
 1. Feel free to open and review the Jenkinsfile (optionally, you could even ask Bob to summarize the changes in the Jenkinsfile to you).
 
----
 
 ## Part 4 — Push and watch
 
@@ -295,32 +286,31 @@ Now, we will create a reusable Bob mode that specializes in lint analysis, insig
 
 1. Open the pipeline run artifacts, you should see a consolidated report that is far more useful than the raw scanner output alone.
 
----
 
-## Part 5 — Optional: Advanced Linting Challenges
+## Part 5 — Advanced Linting Challenges (Optional)
 
 If you have completed the lab and want to explore different linting challenges, here are some ideas:
 
-### Challenge 1: Add a Custom Checkstyle Rule
+#### Challenge 1: Add a Custom Checkstyle Rule
 
 1. Create a custom Checkstyle configuration that enforces your team's naming conventions
 2. Update `pom.xml` to use your custom config instead of `google_checks.xml`
 3. Run the pipeline and see how Bob interprets your custom rules
 
-### Challenge 2: Create a Lint Threshold Gate
+#### Challenge 2: Create a Lint Threshold Gate
 
 1. Modify the pipeline to fail if critical issues exceed a threshold
 2. Use Bob to categorize findings by severity
 3. Parse Bob's output to count critical issues
 4. Fail the build if count > 5
 
-### Challenge 3: Generate a Trend Report
+#### Challenge 3: Generate a Trend Report
 
 1. Archive lint results from multiple builds
 2. Create a Bob mode that compares current vs. previous results
 3. Generate a trend report showing improvement or regression
 
-### Challenge 4: Auto-fix Simple Issues
+#### Challenge 4: Auto-fix Simple Issues
 
 1. Use Bob to generate fix patches for simple issues (import ordering, formatting)
 2. Apply the patches automatically in the pipeline

@@ -65,7 +65,7 @@ Advanced labs for specialized use cases and extending Bob's capabilities:
 
 ```text
 ├── labs/
-│   ├── lab0                 Participant setup (SETUP.md: Jenkins pipeline + working branch)
+│   ├── lab0                 Participant setup
 │   ├── lab1 … lab5          Jenkins pipeline integration labs
 │   └── handoff-labs/        Advanced scenarios and custom modes (6 labs)
 │
