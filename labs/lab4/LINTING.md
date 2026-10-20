@@ -335,7 +335,6 @@ If you have completed the lab and want to explore different linting challenges, 
 - **Hadolint, Checkov, or KubeLinter fail with `command not found`.** The image was built incorrectly or the wrong image is referenced in the Jenkins pod YAML. Verify the image from [`setup/lint-tools/Dockerfile`](setup/lint-tools/Dockerfile) was pushed and is being used.
 - **Checkov output is huge and noisy.** Narrow the scan target to [`order-service/deploy-flawed/`](order-service/deploy-flawed) rather than the whole repo.
 - **KubeLinter reports nothing useful.** Make sure you are linting the deployment manifests, especially [`order-service/deploy-flawed/deployment.yaml`](order-service/deploy-flawed/deployment.yaml).
-- **`Jenkinsfile` not working?** Use the reference solution in [`labs/lab4/Jenkinsfile.lab4solution`](labs/lab4/Jenkinsfile.lab4solution) as your reset point once it is available in the repo.
 - **Hadolint, Checkov, or KubeLinter fail with `command not found`**
   - Cause: The lint-tools image wasn't built correctly or isn't being used
   - Fix: Verify the image from `setup/lint-tools/Dockerfile` was pushed
@@ -349,4 +348,4 @@ If you have completed the lab and want to explore different linting challenges, 
 
 ---
 
-When you're ready, continue to [LAB6_JENKINS_MCP.md](../lab6/LAB6_JENKINS_MCP.md).
+When you're ready, continue to [JENKINS_MCP.md](../lab5/JENKINS_MCP.md).

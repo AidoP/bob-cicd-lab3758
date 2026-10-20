@@ -85,7 +85,7 @@ def askBob(String prompt, String mode = null) {
 }
 ```
 
-Once you've pasted the helper into your `@Jenkinsfile`, save the file, start a new task and switch to **Ask** mode. Ask bob:
+Once you've pasted the helper into your `@Jenkinsfile`, save the file, start a new task and switch to `Ask` mode. Ask bob:
 
 ```
 Can you explain to me the key parts of the askBob function in @Jenkinsfile
@@ -118,7 +118,7 @@ git push
 
 ## Part 2 - Use Bob to analyze git diff. 
 
-Start a new task and switch to Advanced mode (bottom left of the Bob chat panel). Ask Bob to analyze the diff. Something like:
+Start a new task and switch to `Agent` mode (bottom left of the Bob chat panel). Ask Bob to analyze the diff. Something like:
 
 ```
 Bob, analyze the diff between my branch and main.
@@ -132,14 +132,11 @@ This overview of the diff is fine, but we can implement custom modes to get more
 
 ## Part 3 - Create the `pipeline-git-diff-overview` mode
 
-The overview Bob gave in Part 2 was unstructured — fine for a one-off, noisy on every push. A custom mode pins the output shape and the read-only permissions a CI mode should have.
+The overview Bob gave in Part 2 was unstructured — fine for one-off testing. A custom mode pins the output shape and the read-only permissions a CI mode should have.
 
-Start a new task and switch to **Mode Writer** mode. Mode Writer turns a prompt into a reusable custom mode — you
-describe the behavior you want once, and Bob applies it on every future invocation of that mode.
+Start a new task and switch to **Mode Writer** mode. Mode Writer turns a prompt into a reusable custom mode — you describe the behavior you want once, and Bob applies it on every future invocation of that mode.
 
-The prompt below is a starter for a senior-developer-style diff overview — a quick risk-oriented glance, not a
-full code review. Treat it as a base. Anything you want every PR overview to do (output
-format, patterns to flag, noise to skip, the tone you want Bob to take) belongs in this prompt.
+The prompt below is a starter for a senior-developer-style diff overview — a quick risk-oriented glance, not a full code review. Treat it as a base. Anything you want every PR overview to do (output format, patterns to flag, noise to skip, the tone you want Bob to take) belongs in this prompt.
 
 ```
 Write a custom mode with slug `pipeline-git-diff-overview`. Append it to @.bob/custom_modes.yaml — don't overwrite anything else.
@@ -218,8 +215,7 @@ Did the mode's risk band match your call on each one? If it under-rated somethin
 - **Pipeline fails with `fatal: detected dubious ownership in repository`.** Git refuses to operate when the directory's owner UID doesn't match the user running git. The `build-tools` (maven) container runs as a different user than the one that owns the checked-out files. Fix: add `git config --global --add safe.directory "$WORKSPACE"` as the **first** command in your stage's shell step, before any other git invocation. Use `$WORKSPACE` rather than the `'*'` wildcard so you're only trusting the directory you actually need.
 - **Bob says `git-diff.txt` "is not accessible from the current workspace directory".** This means your stage wrote the diff to an absolute path outside Bob's reachable directory tree — almost always `/workspace/git-diff.txt` instead of `git-diff.txt`. Bob's CWD is the Jenkins job workspace (`/workspace/workspace/<folder>/<job>/`), not the root of the shared volume; its tooling won't reach up out of its own workspace. Fix: write the diff to a **relative path** (`git-diff.txt`, no leading slash) and tell Bob to read the same relative path.
 - **Bob output looks like a novel, not a triage summary.** The mode's rules file probably isn't constraining output length. Re-open Mode Writer and refine the rules to enforce brevity — cap per-change output to a few lines, require the three-section structure, tell Bob to skip uninteresting changes.
-- **`Jenkinsfile` not working?** Copy `labs/lab1/Jenkinsfile.lab1solution` over your own `Jenkinsfile` and push. That's the reference state after Lab 1 and a safe reset point.
 
 ---
 
-When you're ready, open [LAB2_UNIT_TESTING.md](../lab2/LAB2_UNIT_TESTING.md).
+When you're ready, open [UNIT_TESTING.md](../lab2/UNIT_TESTING.md).

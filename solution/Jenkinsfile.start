@@ -141,20 +141,20 @@ spec:
 
         // ── Lab 1: PR / Git Diff Review ──────────────────────────
         //    Add a stage here that runs Bob in a "senior developer"
-        //    mode against the git diff. See labs/LAB1_PR_REVIEW.md.
+        //    mode against the git diff. See labs/lab1/PR_REVIEW.md.
 
         // ── Lab 2: Unit Testing ──────────────────────────────────
         //    Add a mvn test stage + Bob test-failure analysis.
-        //    See labs/LAB2_UNIT_TESTING.md.
+        //    See labs/lab2/UNIT_TESTING.md.
 
         // ── Lab 3: Security Scanning ─────────────────────────────
         //    Add a scanner stage + Bob CVE/vuln analysis.
-        //    See labs/LAB3_SECURITY_SCANNING.md.
+        //    See labs/lab3/SECURITY_ANALYSIS.md.
 
         // ── Lab 4: Linting ───────────────────────────────────────
         //    Add a lint stage + Bob lint analysis + parse and post
         //    Jenkins report as a PR comment.
-        //    See labs/LAB4_LINTING.md.
+        //    See labs/lab4/LINTING.md.
 
     }
 

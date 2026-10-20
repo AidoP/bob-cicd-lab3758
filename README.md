@@ -29,7 +29,7 @@ Build a complete Jenkins pipeline with Bob integration across 5 progressive labs
 4. **Linting** — Run linters, Bob analyzes findings and posts PR comments
 5. **Jenkins Pipeline Insights with MCP** — Configure the Jenkins MCP server to interact with your Jenkins instance directly from Bob
 
-**Prerequisites:** Jenkins access, basic pipeline knowledge. Complete [`labs/00_SETUP.md`](labs/00_SETUP.md) before starting Lab 1.
+**Prerequisites:** Jenkins access, basic pipeline knowledge. Complete [`labs/lab0/SETUP.md`](labs/lab0/SETUP.md) before starting Lab 1.
 
 ### Pipeline Scaffolding
 
@@ -65,7 +65,7 @@ Advanced labs for specialized use cases and extending Bob's capabilities:
 
 ```text
 ├── labs/
-│   ├── 00_SETUP.md          Participant setup (Jenkins pipeline + working branch)
+│   ├── lab0                 Participant setup (SETUP.md: Jenkins pipeline + working branch)
 │   ├── lab1 … lab5          Jenkins pipeline integration labs
 │   └── handoff-labs/        Advanced scenarios and custom modes (6 labs)
 │

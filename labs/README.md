@@ -19,7 +19,7 @@ Hands-on labs to learn how DevOps and automation lifecycles can be improved with
 
 ### Prerequisites
 
-Before starting any labs, complete the setup: follow the [Setup Instructions](00_SETUP.md) to configure Jenkins, create your branch, and set up your pipeline.
+Before starting any labs, complete the setup: follow the [Setup Instructions](lab0/SETUP.md) to configure Jenkins, create your branch, and set up your pipeline.
 
 ### Workshop Structure
 
@@ -36,7 +36,7 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ### Lab 0: Setup
 
-**Time**: 10 minutes | **File**: [00_SETUP.md](00_SETUP.md)
+**Time**: 10 minutes | **File**: [lab0/SETUP.md](lab0/SETUP.md)
 
 **What You'll Do:**
 
@@ -49,7 +49,7 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ### Lab 1: PR/Git Diff Review with Bob
 
-**Time**: 20 minutes | **File**: [lab1/LAB1_PR_REVIEW.md](lab1/LAB1_PR_REVIEW.md)
+**Time**: 20 minutes | **File**: [lab1/PR_REVIEW.md](lab1/PR_REVIEW.md)
 
 **What You'll Do:**
 
@@ -71,7 +71,7 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ### Lab 2: Unit Testing with Bob
 
-**Time**: 20 minutes | **File**: [lab2/LAB2_UNIT_TESTING.md](lab2/LAB2_UNIT_TESTING.md)
+**Time**: 20 minutes | **File**: [lab2/UNIT_TESTING.md](lab2/UNIT_TESTING.md)
 
 **What You'll Do:**
 
@@ -94,7 +94,7 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ### Lab 3: Security Vulnerability Analysis
 
-**Time**: 30 minutes | **File**: [lab3/LAB3_SECURITY_ANALYSIS.md](lab3/LAB3_SECURITY_ANALYSIS.md)
+**Time**: 30 minutes | **File**: [lab3/SECURITY_ANALYSIS.md](lab3/SECURITY_ANALYSIS.md)
 
 **What You'll Do:**
 
@@ -118,7 +118,7 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ### Lab 4: Linting and Compliance
 
-**Time**: 20 minutes | **File**: [lab4/LAB4_LINTING.md](lab4/LAB4_LINTING.md)
+**Time**: 20 minutes | **File**: [lab4/LINTING.md](lab4/LINTING.md)
 
 **What You'll Do:**
 
@@ -141,7 +141,7 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ### Lab 5: Jenkins Pipeline Insights with MCP
 
-**Time**: 15 minutes | **File**: [lab6/LAB6_JENKINS_MCP.md](lab5/LAB5_JENKINS_MCP.md)
+**Time**: 15 minutes | **File**: [lab5/JENKINS_MCP.md](lab5/JENKINS_MCP.md)
 
 **What You'll Do:**
 

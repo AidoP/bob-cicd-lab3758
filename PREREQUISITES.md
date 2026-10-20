@@ -17,7 +17,7 @@
 
 Jenkins URL, Jenkins username + password, repo URL (public; you'll fork it)
 
-You'll create your own GitHub PAT during [Lab 0 setup](labs/00_SETUP.md) to push to your fork.
+You'll create your own GitHub PAT during [Lab 0 setup](labs/lab0/SETUP.md) to push to your fork.
 
 ## Verify
 
