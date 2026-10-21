@@ -55,7 +55,7 @@ Every stage of the pipeline that invokes Bob has to do the same two things: step
     ```groovy
     // ── Helper: ask Bob, optionally with a specific custom mode ───────────────────
     // Writes the prompt to a tempfile in the shared workspace and runs `bob` in
-    // the bob container, adding `--chat-mode <slug>` only when a mode is provided.
+    // the bob container.
     // Returns the analysis as a string. Using a tempfile (instead of inlining the
     // prompt on the command line) avoids shell-escaping issues when the prompt
     // contains quotes, backticks, or newlines — common with diffs.
@@ -64,9 +64,9 @@ Every stage of the pipeline that invokes Bob has to do the same two things: step
             def promptFile = ".bob-prompt-${System.currentTimeMillis()}.txt"
             writeFile file: promptFile, text: prompt
 
-            def modeFlag = mode ? "--chat-mode ${mode}" : ""
+            def modeFlag = mode ? "--mode ${mode}" : ""
             def analysis = sh(
-                script: """bob ${modeFlag} -p "\$(cat ${promptFile})" --hide-intermediary-output""",
+                script: """cat ${promptFile} | bob run ${modeFlag} --accept-license""",
                 returnStdout: true
             ).trim()
 
@@ -81,12 +81,10 @@ Every stage of the pipeline that invokes Bob has to do the same two things: step
     ```
     Can you explain to me the key parts of the askBob function in @Jenkinsfile
     ```
-1. In the pipeline, we will invoke Bob using the command:  `bob ${modeFlag} -p "$(cat ${promptFile})" --hide-intermediary-output`. What this command does is the following:
+1. In the pipeline, we will invoke Bob using the command:  `bob run --mode ${modeFlag}`. What this command does is the following:
 
     - **`bob`** — the Bob CLI, available in the `bob` container.
-    - **`${modeFlag}`** — placeholder for the optional `--chat-mode <slug>` flag. When `askBob` is called with a second argument (a custom mode slug, e.g. `pipeline-git-diff-overview`), this expands to `--chat-mode pipeline-git-diff-overview` so Bob applies that mode's rules and tools. When no mode is passed, it's empty and Bob uses its built-in default. Custom modes are how you give a stage stable, structured output without spelling out the format in every prompt — you'll build one in Part 5.
-    - **`-p "..."`** — runs Bob in one-shot prompt mode: take this prompt, do the work, print the result to stdout, exit. No interactive chat.
-    - **`"$(cat ${promptFile})"`** — substitutes in the contents of a tempfile as the prompt. We go through a file (instead of inlining the prompt) because diffs and logs contain quotes, backticks, and newlines that wreck shell escaping.
+    - **`${modeFlag}`** — placeholder for the optional `--mode <slug>` flag. When `askBob` is called with a second argument (a custom mode slug, e.g. `pipeline-git-diff-overview`), this expands to `--mode pipeline-git-diff-overview` so Bob applies that mode's rules and tools. When no mode is passed, it's empty and Bob uses its built-in default. Custom modes are how you give a stage stable, structured output without spelling out the format in every prompt — you'll build one in Part 5.
     - **`--hide-intermediary-output`** — suppresses Bob's tool-call traces and "thinking" output so we capture only the final analysis. Without this, `returnStdout` would pick up everything Bob printed about its thought process along the way.
 
 
