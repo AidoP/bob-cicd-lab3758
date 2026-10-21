@@ -65,3 +65,5 @@ htmlcov/
 *.htpasswd
 
 jenkins-values.yaml
+
+staging_material/

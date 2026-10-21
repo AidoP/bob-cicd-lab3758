@@ -1,41 +1,26 @@
 # Workshop Prerequisites
 
-## Universal (everyone)
+## Participant Environment / Device
 
 - [Bob IDE](https://bob.ibm.com/docs/ide/getting-started/install-and-setup)
 - [Git](https://git-scm.com/downloads)
 - A terminal
 - A modern web browser
-
-## Morning Labs (everyone)
-
-- Node (for bobshell)
-- [BobShell](https://bob.ibm.com/docs/shell/getting-started/install-and-setup) (the `bob` CLI)
-  - https://bob.ibm.com/docs/shell/getting-started/install-and-setup#using-the-command-palette
-- [`uv`](https://docs.astral.sh/uv/getting-started/installation/) — single install, provides both `uv` and `uvx`
-
-## App Team — Afternoon
-
 - [Java 17](https://adoptium.net/temurin/releases/?version=17)
 - [Maven](https://maven.apache.org/install.html)
-
-## SRE Team — Afternoon
-
-- [Java 17](https://adoptium.net/temurin/releases/?version=17)
-- [Maven](https://maven.apache.org/install.html)
+- [`uv`](https://docs.astral.sh/uv/getting-started/installation/) — single install, provides both `uv` and `uvx` (used by the Jenkins MCP server Lab)
 
 ## Credentials (handed out by your instructor)
 
-**Everyone:** Jira URL, Jira username, Jira API token
+Jenkins URL, Jenkins username + password, repo URL (public; you'll fork it)
 
-**SRE team:** Jenkins URL, Jenkins username + password, repo URL, GitHub PAT (if repo is private)
+You'll create your own GitHub PAT during [Lab 0 setup](labs/lab0/SETUP.md) to push to your fork.
 
 ## Verify
 
 ```bash
 git --version
-bob --version
 uv --version
-java --version    # afternoon (both teams)
-mvn --version     # afternoon (both teams)
+java --version
+mvn --version
 ```
