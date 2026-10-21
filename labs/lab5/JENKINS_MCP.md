@@ -147,7 +147,7 @@ Finally, lets run a quick test to make sure the MCP server is working.
 1. Switch to **Agent mode** (MCP tools aren't available in Plan or Ask).
 
     ```text
-    use the jenkins mcp server to check what pipeliens are available
+    use the jenkins mcp server to check what pipelines are available
     ```
 
 1. If Bob says the jenkins server isn't available, go back to the previous step and verify the connection status. If Bob display a response with your pipeline, you are connected to the Jenkins instance
