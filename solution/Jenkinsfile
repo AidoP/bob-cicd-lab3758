@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════
-// Bob-a-thon — Base Pipeline (Jenkinsfile)
+// Base Pipeline (Jenkinsfile)
 // This file has a single Checkout stage. Each lab adds one more
 // stage beneath it; see labs/LAB<N>_*.md for instructions.
 //

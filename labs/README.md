@@ -8,8 +8,6 @@ Hands-on labs to learn how DevOps and automation lifecycles can be improved with
 
 - [Getting Started](#-getting-started)
 - [Workshop Labs](#-workshop-labs)
-- [Handoff Labs: Advanced Topics](#-handoff-labs-advanced-topics)
-- [Quick Start Guide](#-quick-start)
 - [After Completing the Labs](#-after-completing-the-labs)
 - [Additional Resources](#-additional-resources)
 
@@ -24,7 +22,6 @@ Before starting any labs, complete the setup: follow the [Setup Instructions](la
 ### Workshop Structure
 
 1. **Workshop Labs** (Labs 1-5) - CI/CD pipeline automation with Bob and Jenkins
-2. **Handoff Labs** (6 labs) - Optional advanced topics and custom integrations
 
 ---
 
@@ -164,70 +161,6 @@ These labs build a complete AI-assisted Jenkins pipeline, adding one stage per l
 
 ---
 
-## 🎓 Handoff Labs: Advanced Topics
-
-These optional labs demonstrate advanced Bob capabilities and real-world integration patterns.
-
-### 1. Bob Mode Builder
-
-**Time**: 30 min - 2+ hours | **File**: [handoff-labs/bob-mode-labs/README.md](handoff-labs/bob-mode-labs/README.md)
-
-Create custom Bob modes for your specific workflows with templates and examples.
-
-**Topics**: Mode architecture, workflow modes, 5 example modes, templates
-
-**Prerequisites**: Basic Bob familiarity
-
----
-
-### 2. Example MCP Servers
-
-**Time**: 30 min - 3+ hours | **File**: [handoff-labs/bob-mcp-labs/README.md](handoff-labs/bob-mcp-labs/README.md)
-
-Five production-ready MCP server examples using FastMCP framework.
-
-**Topics**: Calculator, file operations, database operations, API integration
-
-**Prerequisites**: Python 3.8+, UV package manager
-
----
-
-### 3. OpenShift Operations with Bob
-
-**Time**: 45-60 minutes | **File**: [handoff-labs/openshift-with-bob/README.md](handoff-labs/openshift-with-bob/README.md)
-
-Manage Red Hat OpenShift Container Platform using Bob's AI-native approach.
-
-**Topics**: MCP-based automation, custom mode workflows, deployment, monitoring, troubleshooting
-
-**Prerequisites**: OpenShift CLI (`oc`), access to OpenShift cluster, Python 3.8+, UV
-
----
-
-### 4. Python to JavaScript Translation
-
-**Time**: 20 minutes | **File**: [handoff-labs/python-to-javascript/README.md](handoff-labs/python-to-javascript/README.md)
-
-Translate code from one programming language to another while maintaining functionality.
-
-**Topics**: Language analysis, translation planning, feature mapping, verification
-
-**Prerequisites**: Python 3.8+, Node.js 14+, UV package manager
-
----
-
-### 5. Simple App Development
-
-**Time**: 30-45 minutes | **File**: [handoff-labs/simple-app-development/README.md](handoff-labs/simple-app-development/README.md)
-
-Build a complete full-stack application from scratch with Bob.
-
-**Topics**: Full-stack development, Flask REST API, SQLite, HTML/CSS/JavaScript, CRUD operations
-
-**Prerequisites**: Python 3.8+, Node.js 14+
-
----
-
 ## 🚀 Working with Bob
 
 **Tips:**
@@ -245,13 +178,6 @@ Build a complete full-stack application from scratch with Bob.
 ## 🎯 After Completing the Labs
 
 ### What's Next?
-
-**Explore Handoff Labs:** There are a few additional labs that build on top of the concepts learned in this workshop
-
-- Advanced topics building on workshop concepts
-- Real-world integration patterns
-- Custom mode development
-- MCP server examples
 
 **Extend Your Pipelines:** Feel free to explore making your own additions / extensions to what you learned in the labs. Some ideas to explore:
 

@@ -178,7 +178,7 @@ To start the first lab ->  [PR_REVIEW.md](../lab1/PR_REVIEW.md).
 - **`git push` fails with auth or a 403**: the PAT may have expired, been scoped to the wrong repository, or be missing **Contents: Read and write**. Create a new one ([1b](#1b-create-a-github-pat-for-your-fork)) and enter it when Git prompts. If the old one is cached, clear it with `git credential-cache exit`.
 - **"Repository not found"** when cloning or building: double-check the repository URL, and that your fork exists and is public.
 - **Git asks for username/password repeatedly**: you haven't enabled credential caching, or the 3-hour cache expired. See [1g](#1g-cache-your-github-credentials).
-- **Can't see files in Bob IDE**: make sure you opened the repository root directory (`us-fsm-ce-bob-a-thon-assets`), not a subdirectory.
+- **Can't see files in Bob IDE**: make sure you opened the repository root directory (`bob-cicd-lab3758`), not a subdirectory.
 
 ---
 ## Additional Resources

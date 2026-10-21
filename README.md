@@ -1,4 +1,4 @@
-# Bob-a-thon Workshop
+# TechXchange 2026 Bob and CI/CD Lab
 
 ![banner](resources/banner.png)
 
@@ -11,7 +11,6 @@ TechXchange 2026 Labs demonstrating how to integrate [IBM Bob](https://bob.ibm.c
 
 1. **📋 [Prerequisites](PREREQUISITES.md)** — Ensure you have the requirements and initial configuration for the labs.
 2. **Run through the [labs](labs/)** - Series of labs around Bob and the CI pipeline.
-3. **Optional:** Explore [Handoff Labs](labs/handoff-labs/) for advanced scenarios after completing the labs
 
 ---
 
@@ -45,29 +44,12 @@ The containers share an `emptyDir` workspace volume at `/workspace`. When the pi
 
 ---
 
-### 🚀 [Handoff Labs](labs/handoff-labs/) — Additional Scenarios
-
-**Duration:** 30 min - 3+ hours | **Level:** Intermediate to Advanced | **Optional / After completing the workshop labs**
-
-Advanced labs for specialized use cases and extending Bob's capabilities:
-
-- **Bob Mode Builder** — Create custom Bob modes for your workflows (includes 5 examples + templates)
-- **Example MCP Servers** — 5 production-ready MCP server implementations using FastMCP
-- **OpenShift Operations** — Manage OpenShift clusters using Bob's AI-native approach
-- **Python to JavaScript Translation** — Translate code between programming languages
-- **Simple App Development** — Build a full-stack application from scratch with Bob
-
-**For:** Teams with specific integration requirements or those wanting to customize Bob for their workflows.
-
----
-
 ## Repository Layout
 
 ```text
 ├── labs/
 │   ├── lab0                 Participant setup
 │   ├── lab1 … lab5          Jenkins pipeline integration labs
-│   └── handoff-labs/        Advanced scenarios and custom modes (6 labs)
 │
 ├── order-service/           Spring Boot demo app (used in the labs)
 ├── Jenkinsfile              Base pipeline (labs starting point)
