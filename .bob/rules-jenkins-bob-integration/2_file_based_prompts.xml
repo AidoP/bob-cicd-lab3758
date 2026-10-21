@@ -254,7 +254,7 @@ echo analysis
       <description>Trying to call bob CLI directly</description>
       <bad><![CDATA[
 // DON'T DO THIS - bypasses the helper
-sh "bob --chat-mode solution-code-reviewer -p 'Review this'"
+sh "bob --mode solution-code-reviewer 'Review this'"
       ]]></bad>
       <good><![CDATA[
 // DO THIS - use the helper
