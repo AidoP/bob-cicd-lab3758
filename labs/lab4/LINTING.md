@@ -100,7 +100,7 @@ Before adding linters to our pipeline, lets start in the Bob IDE with some high 
     - Suggests concrete fixes
     - Prioritizes what matters most
 
-1. You just ran `mvn checkstyle:check` and asked Bob to analyze the findings. This is a common pattern that we can encode as a custom slash command. Start a new task, switch to **Code** mode and prompt Bob:
+1. You just ran `mvn checkstyle:check` and asked Bob to analyze the findings. This is a common pattern that we can encode as a custom slash command. Start a new task, switch to **Agent** mode and prompt Bob:
 
     ```text copy
     Create a custom slash command at .bob/commands/lint-check.md. The filename becomes the command name, so this defines `/lint-check`.
