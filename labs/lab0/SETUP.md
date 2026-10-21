@@ -7,15 +7,10 @@ Before you start Lab 1, set up **one Jenkins pipeline** that you'll reuse across
 - [Prerequisites](#prerequisites)
 - [What your instructor should have given you](#what-your-instructor-should-have-given-you)
 - [Step 1 — Fork the repository, set up Git access, and create your branch](#step-1--fork-the-repository-set-up-git-access-and-create-your-branch)
-  - [1a. Fork the repository](#1a-fork-the-repository)
-  - [1b. Create a GitHub PAT for your fork](#1b-create-a-github-pat-for-your-fork)
-  - [1c. Clone your fork](#1c-clone-your-fork)
-  - [1d. Open in Bob IDE](#1d-open-in-bob-ide)
-  - [1e. Configure Git (if needed)](#1e-configure-git-if-needed)
 - [Step 2 — Create your Jenkins pipeline](#step-2--create-your-jenkins-pipeline)
 - [Step 3 — Run it once to verify](#step-3--run-it-once-to-verify)
-- [You're set — the workflow from here](#youre-set--the-workflow-from-here)
-- [Stuck?](#stuck)
+- [You're set — next steps](#next-steps)
+- [Troubleshooting](#troubleshooting)
 
 ## Prerequisites
 
@@ -162,7 +157,7 @@ To setup Jenkins, you will create a pipeline inside a specific `user#` folder, n
 If something fails, see the [stuck?](#stuck) section at the bottom.
 
 ---
-## You're ready to get started
+## Next Steps
 
 The same pipeline runs through all labs. Your loop for each lab will:
 
@@ -176,7 +171,7 @@ To start the first lab ->  [PR_REVIEW.md](../lab1/PR_REVIEW.md).
 
 ---
 
-## Stuck?
+## Troubleshooting
 
 - **Build fails with `ImagePullBackOff`**: the Jenkinsfile's Bob image URL doesn't match your cluster. Ask your instructor to confirm the Bob image is pushed to the `jenkins` namespace.
 - **"Delete Folder" button is missing from my folder**: that's intentional. Matrix auth doesn't grant delete rights on the folder itself so you can't accidentally wipe your workshop work.

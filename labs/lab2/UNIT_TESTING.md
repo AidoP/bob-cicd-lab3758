@@ -3,8 +3,6 @@
 ## Table of Contents
 
 - [Overview of Lab](#overview-of-lab)
-  - [What you'll build in Lab 2](#what-youll-build-in-lab-2)
-  - [What you'll reuse from Lab 1](#what-youll-reuse-from-lab-1)
 - [Before you start](#before-you-start)
 - [Part 1 — Create the `java-unit-test-mode` IDE mode](#part-1--create-the-java-unit-test-mode-ide-mode)
 - [Part 2 — Use the mode to add a test](#part-2--use-the-mode-to-add-a-test)
@@ -12,8 +10,7 @@
 - [Part 4 — Build the `Unit Tests` stage](#part-4--build-the-unit-tests-stage)
 - [Part 5 — Push and watch](#part-5--push-and-watch)
 - [Part 6 — Stress-test the mode (optional)](#part-6--stress-test-the-mode-optional)
-- [Stuck?](#stuck)
-
+- [Troubleshooting](#troubleshooting)
 
 ## Overview of Lab
 
@@ -174,7 +171,7 @@ The Unit Tests stage only triggers Bob's analysis when a test fails — so to se
 
 1. Once you've seen it work, revert the broken test and push again to get back to green.
 
-## Part 6 — Stress-test the mode (optional)
+## Part 6 — Stress-test the mode (OPTIONAL)
 
 Feel free to introduce different kinds of test failures and see how Bob's diagnosis changes:
 
@@ -188,7 +185,7 @@ Did Bob's root-cause guess match yours? If it mis-diagnosed something obvious, t
 
 ---
 
-## Stuck?
+## Troubleshooting
 
 - **Pipeline fails with something like `askBob: method not found`.** The helper got moved into the `pipeline { }` block somehow. Move it back outside.
 - **Bob stage runs but says the mode wasn't found.** Check (a) `.bob/custom_modes.yaml` contains the slug `pipeline-test-failure-analyzer`, (b) you're passing that exact string to `askBob`, (c) you committed and pushed `.bob/`. Bob reads `custom_modes.yaml` fresh from the workspace on every run.

@@ -3,12 +3,11 @@
 ## Table of Contents
 
 - [Overview](#overview)
-  - [What you'll build](#what-youll-build)
 - [Before you start](#before-you-start)
 - [Part 1 — Jenkins MCP Server](#part-1--jenkins-mcp-server)
 - [Part 2 — Pipeline Information](#part-2--pipeline-information)
 - [Part 3 — Analysis and Insights](#part-3--analysis-and-insights)
-- [Part 4 — Optional: Advanced Jenkins Automation](#part-4--optional-advanced-jenkins-automation)
+- [Part 4 — Optional: Advanced Jenkins Automation](#part-4--advanced-jenkins-automation-optional)
 - [Troubleshooting](#troubleshooting)
 
 

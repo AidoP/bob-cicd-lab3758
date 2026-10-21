@@ -3,13 +3,11 @@
 ## Table of Contents
 
 - [Overview](#overview)
-  - [What you'll build](#what-youll-build)
-  - [Before you start](#before-you-start)
 - [Part 1 — Code Linting with Checkstyle](#part-1--code-linting-with-checkstyle)
 - [Part 2 — Deployment Artifact Linting](#part-2--deployment-artifact-linting)
 - [Part 3 — Create the Bob Linter mode and Pipeline Stage](#part-3--create-the-bob-linter-mode-and-pipeline-stage)
 - [Part 4 — Push and watch](#part-4--push-and-watch)
-- [Part 5 — Optional: Advanced Linting Challenges](#part-5--optional-advanced-linting-challenges)
+- [Part 5 — Optional: Advanced Linting Challenges](#part-5--advanced-linting-challenges-optional)
 - [Troubleshooting](#troubleshooting)
 
 
@@ -287,7 +285,7 @@ Now, we will create a reusable Bob mode that specializes in lint analysis, insig
 1. Open the pipeline run artifacts, you should see a consolidated report that is far more useful than the raw scanner output alone.
 
 
-## Part 5 — Advanced Linting Challenges (Optional)
+## Part 5 — Advanced Linting Challenges (OPTIONAL)
 
 If you have completed the lab and want to explore different linting challenges, here are some ideas:
 

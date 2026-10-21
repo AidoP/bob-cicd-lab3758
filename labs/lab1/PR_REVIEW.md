@@ -11,7 +11,7 @@
 - [Part 4 — Build the `PR Review` stage](#part-4--build-the-pr-review-stage)
 - [Part 5 — Push and watch](#part-5--push-and-watch)
 - [Part 6 — Stress-test the mode (optional)](#part-6--stress-test-the-mode-optional)
-- [Stuck?](#stuck)
+- [Troubleshooting](#troubleshooting)
 
 ## Overview of Lab
 
@@ -174,7 +174,7 @@ Now that you have created a custom mode, let's add the new stage to the `Jenkins
 1. Open the archived artifact from the build page and you've got a persistent record of Bob's take on that commit — searchable in Jenkins's build history.
 
 
-## Part 6 — Stress-test the mode (optional)
+## Part 6 — Stress-test the mode (OPTIONAL)
 
 Introduce a few changes you'd flag as **high** or **critical** in a real review — broad `catch (Exception e)` that swallows errors, a hardcoded secret, a missing null check, an unbounded loop, an SQL string built by concatenation. Push and watch the build.
 
@@ -182,7 +182,7 @@ Did the mode's risk band match your call on each one? If it under-rated somethin
 
 ---
 
-## Stuck?
+## Troubleshooting
 
 - **Pipeline fails with something like `askBob: method not found`.** Your helper function is inside the `pipeline { }` block. Move it to the top level of the file (outside the `pipeline { }` braces).
 - **Bob stage runs but says the mode wasn't found.** Check (a) `.bob/custom_modes.yaml` contains the slug `pipeline-git-diff-overview`, (b) you're passing that exact string to `askBob`, (c) you committed and pushed `.bob/`. Bob reads `custom_modes.yaml` fresh from the workspace on every run.
