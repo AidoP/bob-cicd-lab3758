@@ -144,7 +144,7 @@ Let's verify the MCP server started.
 
 Finally, lets run a quick test to make sure the MCP server is working.
 
-1. Switch to **Advanced mode** (MCP tools aren't available in Plan, Code, or Ask).
+1. Switch to **Agent mode** (MCP tools aren't available in Plan or Ask).
 
     ```text
     use the jenkins mcp server to check what pipeliens are available
@@ -159,7 +159,7 @@ Finally, lets run a quick test to make sure the MCP server is working.
 
 Now that the server is connected, let's explore what's on your Jenkins instance.
 
-1. Switch to the **Advanced mode**, ask Bob:
+1. Switch to the **Agent mode**, ask Bob:
 
     ```text
     Use the jenkins MCP server to list all jobs/pipelines on the system.
