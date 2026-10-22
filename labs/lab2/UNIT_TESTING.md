@@ -89,10 +89,17 @@ By the end, a failing test won't just turn the build yellow — Bob will explain
 1. After Bob writes the tests, ask Bob to run the test (you may need to install maven).
 
     ```
-    Run the tests and ensure they pass."
+    Run the new tests to see if they pass."
     ```
 
 1. Bob will ask to switch modes because we didn't give the unit test mode the `command` tool group. 
+
+    >_**Note:**_ If Bob does not ask to switch modes, simply switch to `Agent` mode and run the request again.
+    >
+    > Bob will run the tests using Maven. If prompted with a security warning, click the `I understand the risk` box and approve.
+
+    ![run_tests.png](assets/run_tests.png)
+
 
 ## Part 3 — Create the `pipeline-test-failure-analyzer` mode
 
@@ -168,6 +175,9 @@ The Unit Tests stage only triggers Bob's analysis when a test fails — so to se
     - Pipeline ends UNSTABLE (yellow), not red
 
 1. Open the archived artifact for a persistent record of Bob's diagnosis. Look into the build artifact and see if Bob found the failed test you added. 
+
+    ![test-review-asset.png](assets/test-review-asset.png)
+
 
 1. Once you've seen it work, revert the broken test and push again to get back to green.
 

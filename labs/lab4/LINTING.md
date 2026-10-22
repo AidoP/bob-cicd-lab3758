@@ -89,6 +89,8 @@ Before adding linters to our pipeline, lets start in the Bob IDE with some high 
     1. What are the most critical violations?
     2. Which ones could impact production reliability?
     3. What should I fix first?
+
+    Only analyze the actual checkstyle output
     ```
 
     > **Note:** Bob will request permission to read the target directory and will find the correct output report xml file.
@@ -99,6 +101,8 @@ Before adding linters to our pipeline, lets start in the Bob IDE with some high 
     - Provides specific line numbers
     - Suggests concrete fixes
     - Prioritizes what matters most
+
+    ![checkstyle-analysis-bobide.png](assets/checkstyle-analysis-bobide.png)
 
 1. You just ran `mvn checkstyle:check` and asked Bob to analyze the findings. This is a common pattern that we can encode as a custom slash command. Start a new task, switch to **Agent** mode and prompt Bob:
 
@@ -284,6 +288,7 @@ Now, we will create a reusable Bob mode that specializes in lint analysis, insig
 
 1. Open the pipeline run artifacts, you should see a consolidated report that is far more useful than the raw scanner output alone.
 
+    ![linting-jenkins-output.png](assets/linting-jenkins-output.png)
 
 ## Part 5 — Advanced Linting Challenges (OPTIONAL)
 

@@ -91,7 +91,7 @@ Next, lets setup the MCP server. The `.bob/mcp.json` file already exists at the 
         "command": "bash",
         "args": [
             "-c",
-            "set -a; source .env; set +a; exec uvx mcp-jenkins --jenkins-url \"$JENKINS_URL\" --jenkins-username \"$JENKINS_USERNAME\" --jenkins-password \"$JENKINS_API_TOKEN\""
+            "set -e; set -a; source ${workspaceFolder}/.env; set +a; exec uvx mcp-jenkins --jenkins-url \"$JENKINS_URL\" --jenkins-username \"$JENKINS_USERNAME\" --jenkins-password \"$JENKINS_API_TOKEN\""
 
         ],
         "disabled": false,
@@ -233,6 +233,8 @@ Now let's explore a couple of more complex / comprehensive scenarios we can expl
     - Trends over time
     - Recommendations for improvement
     ```
+
+    ![jenkins-pipeline-health-report.png](assets/jenkins-pipeline-health-report.png)
 
 
 ## Part 4 — Advanced Jenkins Automation (OPTIONAL)
