@@ -171,6 +171,8 @@ Now that you have created a custom mode, let's add the new stage to the `Jenkins
 
 1. Open the archived artifact from the build page and you've got a persistent record of Bob's take on that commit — searchable in Jenkins's build history.
 
+    ![pr-review-asset.png](assets/pr-review-asset.png)
+
 
 ## Part 6 — Stress-test the mode (OPTIONAL)
 
