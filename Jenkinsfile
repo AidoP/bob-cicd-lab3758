@@ -93,6 +93,30 @@ spec:
             }
         }
 
+        stage('Build') {
+            steps {
+                echo "=== Building order-service ==="
+                sh 'mvn -f order-service/pom.xml clean package -DskipTests'
+            }
+            post {
+                success {
+                    archiveArtifacts artifacts: 'order-service/target/*.jar', fingerprint: true
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "=== Running unit tests for order-service ==="
+                sh 'mvn -f order-service/pom.xml test'
+            }
+            post {
+                always {
+                    junit 'order-service/target/surefire-reports/*.xml'
+                }
+            }
+        }
+
         // ── Lab 1: PR / Git Diff Review ──────────────────────────
         //    Add a stage here that runs Bob in a "senior developer"
         //    mode against the git diff. See labs/lab1/PR_REVIEW.md.
